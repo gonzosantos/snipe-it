@@ -405,12 +405,9 @@
                                         </ul>
                                     </div>
                                 @endif
-                                    @if  ($snipeSettings->qr_code=='1')
-                                        <div class="col-md-12 text-center" style="padding-top: 15px;">
-                                            <img src="{{ config('app.url') }}/hardware/{{ $asset->id }}/qr_code" class="img-thumbnail" style="height: 150px; width: 150px; margin-right: 10px;" alt="QR code for {{ $asset->getDisplayNameAttribute() }}">
-                                        </div>
-                                    @endif
-
+                                    <div class="col-md-12 text-center" style="padding-top: 15px;">
+                                        <img src="{{ config('app.url') }}/hardware/{{ $asset->id }}/qr_code" class="img-thumbnail" style="height: 150px; width: 150px; margin-right: 10px;" alt="QR code for {{ $asset->getDisplayNameAttribute() }}">
+                                    </div>
                                 <br><br>
                             </div>
 
@@ -702,7 +699,7 @@
                                     </div>
 
                                     <!-- byod -->
-                                    <div class="row">
+                                    <div class="row byod">
                                         <div class="col-md-3">
                                             <strong>{{ trans('general.byod') }}</strong>
                                         </div>
@@ -1164,7 +1161,6 @@
                         <div class="row{{($asset->licenses->count() > 0 ) ? '' : ' hidden-print'}}">
                             <div class="col-md-12">
                                 <!-- Licenses assets table -->
-                                @if ($asset->licenses->count() > 0)
                                     <table class="table">
                                         <thead>
                                         <tr>
@@ -1197,13 +1193,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                @else
-
-                                    <div class="alert alert-info alert-block hidden-print">
-                                        <x-icon type="info-circle" />
-                                        {{ trans('general.no_results') }}
-                                    </div>
-                                @endif
                             </div><!-- /col -->
                         </div> <!-- row -->
                     </div> <!-- /.tab-pane software -->
@@ -1212,7 +1201,7 @@
                         <!-- checked out assets table -->
                         <div class="row{{($asset->components->count() > 0 ) ? '' : ' hidden-print'}}">
                             <div class="col-md-12">
-                                @if($asset->components->count() > 0)
+
                                     <table class="table table-striped">
                                         <thead>
                                         <th>{{ trans('general.name') }}</th>
@@ -1257,12 +1246,6 @@
                                         </tr>
                                         </tfoot>
                                     </table>
-                                @else
-                                    <div class="alert alert-info alert-block hidden-print">
-                                        <x-icon type="info-circle" />
-                                        {{ trans('general.no_results') }}
-                                    </div>
-                                @endif
                             </div>
                         </div>
                     </div> <!-- /.tab-pane components -->
@@ -1271,9 +1254,6 @@
                     <div class="tab-pane fade" id="assets">
                         <div class="row{{($asset->assignedAssets->count() > 0 ) ? '' : ' hidden-print'}}">
                             <div class="col-md-12">
-
-                                @if ($asset->assignedAssets->count() > 0)
-
 
                                     <form
                                         method="POST"
@@ -1322,14 +1302,6 @@
 
                                         </form>
                                     </div>
-
-                                @else
-
-                                    <div class="alert alert-info alert-block hidden-print">
-                                        <x-icon type="info-circle" />
-                                        {{ trans('general.no_results') }}
-                                    </div>
-                                @endif
 
 
                             </div><!-- /col -->
